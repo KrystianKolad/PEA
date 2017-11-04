@@ -1,3 +1,4 @@
+using System;
 using PEA.Algorithms.Interfaces;
 using PEA.Consts;
 using PEA.DataAccess;
@@ -22,6 +23,7 @@ namespace PEA.Algorithms.ATSP
         {
             var data = _reader.Read(GlobalConsts.ATSPFilePath+fileName);
             var matrix = _parser.ParseData(data);
+            matrix.Introduce();
         }
     }
 }
