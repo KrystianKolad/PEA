@@ -5,7 +5,7 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Parser
 {
-    public class SymmetricalParser : IParser<City>
+    public class SymmetricalParser : ISymmetricalParser<City>
     {
         public IList<City> ParseData(string[] data)
         {

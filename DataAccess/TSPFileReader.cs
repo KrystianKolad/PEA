@@ -22,7 +22,7 @@ namespace PEA.DataAccess
                         fileLines.Add(line);
                     }
                 }
-                result = new string[fileLines.Count-LinesToCut];
+                result = new string[fileLines.Count - LinesToCut];
                 for (int i = LinesToCut; i < fileLines.Count; i++)
                 {
                     result[i - LinesToCut] = fileLines[i];

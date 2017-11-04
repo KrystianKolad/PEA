@@ -4,9 +4,9 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Parser
 {
-    public class AsymmetricalParser : IParser<City>
+    public class AsymmetricalParser : IAsymmetricalParser<Matrix>
     {
-        public IList<City> ParseData(string[] data)
+        public Matrix ParseData(string[] data)
         {
             throw new System.NotImplementedException();
         }
