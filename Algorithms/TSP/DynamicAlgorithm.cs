@@ -21,11 +21,11 @@ namespace PEA.Algorithms.TSP
 
         public void Run(string fileName)
         {
-            var data = _reader.Read(GlobalConsts.TSPFilePath+fileName);
+            var data = _reader.Read(GlobalConsts.TSPFilePath + fileName);
             var cities = _parser.ParseData(data);
             foreach (var item in cities)
             {
-                System.Console.WriteLine(item.Number+item.Latitude+item.Longitude);
+                System.Console.WriteLine(item.Number + " " + item.Latitude + " " + item.Longitude);
             }
         }
     }

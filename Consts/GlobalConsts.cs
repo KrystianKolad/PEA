@@ -20,5 +20,7 @@ namespace PEA.Consts
         public const string AfterMessage = "@Czy chcesz uruchomic kolejny algorytm? y/n";
         public const string TSPFilePath = @"Data/TSP/";
         public const string ATSPFilePath = @"Data/ATSP/";
+        public const int TSPLinesToCutOff = 6;
+        public const int ATSPLinesToCutOff = 7;
     }
 }

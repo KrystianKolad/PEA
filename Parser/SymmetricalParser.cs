@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PEA.Consts;
 using PEA.Model;
 using PEA.Parser.Interfaces;
 
@@ -13,7 +14,7 @@ namespace PEA.Parser
             int numberOfCities = data.Length;
             try
             {
-                for (int i = 0; i < numberOfCities; i++)
+                for (int i = GlobalConsts.TSPLinesToCutOff; i < numberOfCities; i++)
                 {
                     string[] line = new string[3];
                     line = data[i].Split(" ");

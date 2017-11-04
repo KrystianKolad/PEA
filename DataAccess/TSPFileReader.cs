@@ -7,7 +7,6 @@ namespace PEA.DataAccess
 {
     public class TSPFileReader : IReader
     {
-        private const int LinesToCut = 6;
         public string[] Read(string filePath)
         {
             string[] result = null;
@@ -22,10 +21,10 @@ namespace PEA.DataAccess
                         fileLines.Add(line);
                     }
                 }
-                result = new string[fileLines.Count - LinesToCut];
-                for (int i = LinesToCut; i < fileLines.Count; i++)
+                result = new string[fileLines.Count];
+                for (int i = 0; i < fileLines.Count; i++)
                 {
-                    result[i - LinesToCut] = fileLines[i];
+                    result[i] = fileLines[i];
                 }
             }
             catch (Exception exc)

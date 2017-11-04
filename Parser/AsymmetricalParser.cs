@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PEA.Model;
 using PEA.Parser.Interfaces;
@@ -8,7 +9,16 @@ namespace PEA.Parser
     {
         public Matrix ParseData(string[] data)
         {
-            throw new System.NotImplementedException();
+            Matrix result = new Matrix();
+            try
+            {
+                
+            }
+            catch (Exception exc)
+            {   
+                throw exc;
+            }
+            return result;
         }
     }
 }
