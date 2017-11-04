@@ -1,6 +1,6 @@
 using PEA.Algorithms.Interfaces;
 
-namespace PEA.Algorithms
+namespace PEA.Algorithms.ATSP
 {
     public class GeneticAlgorithm : IAlgorithm
     {

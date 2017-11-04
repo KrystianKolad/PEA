@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using PEA.Algorithms;
+using ATSP = PEA.Algorithms.ATSP;
+using TSP = PEA.Algorithms.TSP;
 using PEA.Algorithms.Interfaces;
 using PEA.DataAccess;
 using PEA.DataAccess.Interfaces;
@@ -26,7 +27,7 @@ namespace PEA
             }
             catch (Exception exc)
             {
-                
+
                 System.Console.WriteLine(exc.Message);
             }
         }
@@ -34,7 +35,7 @@ namespace PEA
         private static void SymmetricalGeneticTSP()
         {
             _parser = new SymmetricalParser();
-            _algorithm = new GeneticAlgorithm();
+            _algorithm = new TSP.GeneticAlgorithm();
             var data = _reader.Read(@"Data/berlin52.tsp");
             IList<City> cities = _parser.ParseData(data);
         }
@@ -42,7 +43,7 @@ namespace PEA
         private static void AsymmetricalGeneticTSP()
         {
             _parser = new AsymmetricalParser();
-            _algorithm = new GeneticAlgorithm();
+            _algorithm = new ATSP.GeneticAlgorithm();
             var data = _reader.Read(@"Data/ftv55.atsp");
         }
     }
