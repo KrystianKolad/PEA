@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PEA.Algorithms;
 using PEA.Algorithms.Interfaces;
 using PEA.DataAccess;
@@ -17,21 +18,32 @@ namespace PEA
         private static IAlgorithm _algorithm;
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                _reader = new TSPFileReader();
+                //SymmetricalGeneticTSP();
+                AsymmetricalGeneticTSP();
+            }
+            catch (Exception exc)
+            {
+                
+                System.Console.WriteLine(exc.Message);
+            }
         }
 
         private static void SymmetricalGeneticTSP()
         {
-            _reader = new SymmetricalReader();
             _parser = new SymmetricalParser();
             _algorithm = new GeneticAlgorithm();
+            var data = _reader.Read(@"Data/berlin52.tsp");
+            IList<City> cities = _parser.ParseData(data);
         }
 
         private static void AsymmetricalGeneticTSP()
         {
-            _reader = new AsymmetricalReader();
             _parser = new AsymmetricalParser();
             _algorithm = new GeneticAlgorithm();
+            var data = _reader.Read(@"Data/ftv55.atsp");
         }
     }
 }
