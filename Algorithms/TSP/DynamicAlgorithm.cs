@@ -21,7 +21,7 @@ namespace PEA.Algorithms.TSP
 
         public void Run(string fileName)
         {
-            var data = _reader.Read(GlobalConsts.TSPFilePath + fileName);
+            var data = _reader.Read(fileName);
             var cities = _parser.ParseData(data);
             foreach (var item in cities)
             {

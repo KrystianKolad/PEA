@@ -21,7 +21,7 @@ namespace PEA.Algorithms.ATSP
 
         public void Run(string fileName)
         {
-            var data = _reader.Read(GlobalConsts.ATSPFilePath+fileName);
+            var data = _reader.Read(fileName);
             var matrix = _parser.ParseData(data);
             matrix.Introduce();
         }
