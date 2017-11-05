@@ -21,8 +21,8 @@ namespace PEA.Algorithms.ATSP
 
         public void Run(string fileName)
         {
-            var data = _reader.Read(fileName);
-            var cities = _parser.ParseData(data);
+            string[] data = _reader.Read(fileName);
+            Matrix matrix = _parser.ParseData(data);
             System.Console.WriteLine("Rozpoczynam algorytm");
             // TODO
             System.Console.WriteLine("Algorytm został zakończony");

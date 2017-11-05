@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PEA.Algorithms.Interfaces;
 using PEA.Consts;
 using PEA.DataAccess;
@@ -21,8 +22,8 @@ namespace PEA.Algorithms.TSP
 
         public void Run(string fileName)
         {
-            var data = _reader.Read(fileName);
-            var cities = _parser.ParseData(data);
+            string[] data = _reader.Read(fileName);
+            IList<City> cities = _parser.ParseData(data);
             System.Console.WriteLine("Rozpoczynam algorytm");
             // TODO
             System.Console.WriteLine("Algorytm został zakończony");
