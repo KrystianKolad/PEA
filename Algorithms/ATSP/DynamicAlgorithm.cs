@@ -12,19 +12,19 @@ namespace PEA.Algorithms.ATSP
     public class DynamicAlgorithm : IAlgorithm
     {
         private IReader _reader;
-        private IAsymmetricalParser<Matrix> _parser;
+        private IParser<Matrix> _parser;
         public DynamicAlgorithm()
         {
-            _reader = new TSPFileReader();
+            _reader = new ATSPFileReader();
             _parser = new AsymmetricalParser();
         }
 
         public void Run(string fileName)
         {
-            string[] data = _reader.Read(fileName);
+            var data = _reader.Read(fileName);
             Matrix matrix = _parser.ParseData(data);
             System.Console.WriteLine("Rozpoczynam algorytm");
-            // TODO
+            // // TODO
             System.Console.WriteLine("Algorytm został zakończony");
         }
     }

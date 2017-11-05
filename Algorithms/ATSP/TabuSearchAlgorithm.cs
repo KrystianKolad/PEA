@@ -10,7 +10,7 @@ namespace PEA.Algorithms.ATSP
     public class TabuSearchAlgorithm : IAlgorithm
     {
         private IReader _reader;
-        private IAsymmetricalParser<Matrix> _parser;
+        private IParser<Matrix> _parser;
 
         public TabuSearchAlgorithm()
         {

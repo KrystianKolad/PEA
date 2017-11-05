@@ -8,64 +8,25 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Parser
 {
-    public class AsymmetricalParser : IAsymmetricalParser<Matrix>
+    public class AsymmetricalParser : IParser<Matrix>
     {
         public Matrix ParseData(string[] data)
         {
             Matrix result = null;
-            int rows = data.Length - GlobalConsts.ATSPLinesToCutOff;
-            int columns = 0;
+            int columns = int.Parse(data[0]);
+            int rows = (data.Length -1)/columns;
+            int currentPlace=1;
             Console.WriteLine("Parsuję dane.");
             try
             {
-                IList<string[]> temporaryRows = new List<string[]>();
-                for (int i = GlobalConsts.ATSPLinesToCutOff; i < data.Length; i++)
+                result=new Matrix(rows,columns);
+                for (int i = 0; i < rows; i++)
                 {
-                    int rowLenght = 0;
-                    string[] oldRow = data[i].Split(" ");
-                    for (int j = 0; j < oldRow.Length; j++)
+                    for (int j = 0; j < columns; j++)
                     {
-                        if (!oldRow[j].Equals(string.Empty))
-                        {
-                            rowLenght++;
-                        }
+                        result.SetField(i,j,float.Parse(data[currentPlace]));
+                        currentPlace++;
                     }
-                    if (rowLenght > columns)
-                    {
-                        columns = rowLenght;
-                    }
-                }
-                for (int i = GlobalConsts.ATSPLinesToCutOff; i < data.Length; i++)
-                {
-                    string[] newRow = new string[columns];
-                    int rowLenght = 0;
-                    string[] oldRow = data[i].Split(" ");
-                    for (int j = 0; j < oldRow.Length; j++)
-                    {
-                        if (!oldRow[j].Equals(string.Empty))
-                        {
-                            newRow[rowLenght] = oldRow[j];
-                            rowLenght++;
-                        }
-                    }
-                    temporaryRows.Add(newRow);
-                }
-                result = new Matrix(rows,columns);
-                int row=0;
-                foreach (var item in temporaryRows)
-                {
-                    for (int i = 0; i < columns; i++)
-                    {
-                        if(item[i]!=null)
-                        {
-                            result.SetField(row,i,float.Parse(item[i]));
-                        }
-                        else
-                        {
-                            result.SetField(row,i,null);
-                        }
-                    }
-                    row++;
                 }
             }
             catch (Exception exc)

@@ -10,7 +10,7 @@ namespace PEA.Algorithms.TSP
     public class GeneticAlgorithm : IAlgorithm
     {
         private readonly IReader _reader;
-        private readonly ISymmetricalParser<City> _parser;
+        private readonly IParser<Matrix> _parser;
 
         public GeneticAlgorithm()
         {

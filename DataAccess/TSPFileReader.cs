@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using PEA.Consts;
 using PEA.DataAccess.Interfaces;
 
 namespace PEA.DataAccess
@@ -17,7 +18,7 @@ namespace PEA.DataAccess
                 using (var streamReader = new StreamReader(filePath))
                 {
                     string line = null;
-                    while ((line = streamReader.ReadLine()) != null && !line.Contains("EOF"))
+                    while ((line = streamReader.ReadLine()) != null && !line.Contains(DataReaderConsts.END_OF_FILE))
                     {
                         fileLines.Add(line);
                     }

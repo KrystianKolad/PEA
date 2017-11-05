@@ -6,11 +6,12 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Parser
 {
-    public class SymmetricalParser : ISymmetricalParser<City>
+    public class SymmetricalParser : IParser<Matrix>
     {
-        public IList<City> ParseData(string[] data)
+        public Matrix ParseData(string[] data)
         {
-            IList<City> result = new List<City>();
+            Matrix result = null;
+            IList<City> cities = new List<City>();
             int numberOfCities = data.Length;
             Console.WriteLine("Parsuję dane.");
             try
@@ -19,7 +20,7 @@ namespace PEA.Parser
                 {
                     string[] line = new string[3];
                     line = data[i].Split(" ");
-                    result.Add(
+                    cities.Add(
                         new City(
                             Int32.Parse(line[0]),
                             float.Parse(line[1]),
@@ -27,6 +28,7 @@ namespace PEA.Parser
                             )
                         );
                 }
+                
             }
             catch (Exception exc)
             {
