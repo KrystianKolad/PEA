@@ -7,7 +7,7 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Algorithms.TSP
 {
-    public class TabuSearchAlgorithm : IAlgorithm
+    public class TabuSearchAlgorithm : Abstract.AbstractTabuSearchAlgorithm,IAlgorithm
     {
         private readonly IReader _reader;
         private readonly IParser<Matrix> _parser;

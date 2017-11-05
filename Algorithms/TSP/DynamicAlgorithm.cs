@@ -9,7 +9,7 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Algorithms.TSP
 {
-    public class DynamicAlgorithm : IAlgorithm
+    public class DynamicAlgorithm : Abstract.AbstractDynamicAlgorithm, IAlgorithm
     {
         private IReader _reader;
         private IParser<Matrix> _parser;
@@ -23,9 +23,10 @@ namespace PEA.Algorithms.TSP
         public void Run(string fileName)
         {
             string[] data = _reader.Read(fileName);
-            Matrix cities = _parser.ParseData(data);
+            Matrix matrix = _parser.ParseData(data);
             System.Console.WriteLine("Rozpoczynam algorytm");
             // TODO
+            this.Execute(matrix);
             System.Console.WriteLine("Algorytm został zakończony");
         }
     }

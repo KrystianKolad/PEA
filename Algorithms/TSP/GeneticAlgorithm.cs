@@ -7,7 +7,7 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Algorithms.TSP
 {
-    public class GeneticAlgorithm : IAlgorithm
+    public class GeneticAlgorithm : Abstract.AbstractGeneticAlgorithm,IAlgorithm
     {
         private readonly IReader _reader;
         private readonly IParser<Matrix> _parser;

@@ -9,7 +9,7 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Algorithms.ATSP
 {
-    public class DynamicAlgorithm : IAlgorithm
+    public class DynamicAlgorithm : Abstract.AbstractDynamicAlgorithm, IAlgorithm
     {
         private IReader _reader;
         private IParser<Matrix> _parser;
@@ -25,6 +25,7 @@ namespace PEA.Algorithms.ATSP
             Matrix matrix = _parser.ParseData(data);
             System.Console.WriteLine("Rozpoczynam algorytm");
             // // TODO
+            this.Execute(matrix);
             System.Console.WriteLine("Algorytm został zakończony");
         }
     }

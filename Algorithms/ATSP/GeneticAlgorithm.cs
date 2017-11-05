@@ -7,7 +7,7 @@ using PEA.Parser.Interfaces;
 
 namespace PEA.Algorithms.ATSP
 {
-    public class GeneticAlgorithm : IAlgorithm
+    public class GeneticAlgorithm : Abstract.AbstractGeneticAlgorithm,IAlgorithm
     {
         private IReader _reader;
         private IParser<Matrix> _parser;
