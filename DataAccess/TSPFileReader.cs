@@ -18,15 +18,19 @@ namespace PEA.DataAccess
                 using (var streamReader = new StreamReader(filePath))
                 {
                     string line = null;
+                    while (!(line = streamReader.ReadLine()).Contains(DataReaderConsts.NODE_COORD_SECTION))
+                    {
+
+                    }
                     while ((line = streamReader.ReadLine()) != null && !line.Contains(DataReaderConsts.END_OF_FILE))
                     {
                         fileLines.Add(line);
                     }
                 }
-                result = new string[fileLines.Count];
                 for (int i = 0; i < fileLines.Count; i++)
                 {
                     result[i] = fileLines[i];
+                    System.Console.WriteLine(result[i]);
                 }
             }
             catch (Exception exc)

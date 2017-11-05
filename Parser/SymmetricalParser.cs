@@ -16,7 +16,7 @@ namespace PEA.Parser
             Console.WriteLine("Parsuję dane.");
             try
             {
-                for (int i = GlobalConsts.TSPLinesToCutOff; i < numberOfCities; i++)
+                for (int i = 0; i < numberOfCities; i++)
                 {
                     string[] line = new string[3];
                     line = data[i].Split(" ");
