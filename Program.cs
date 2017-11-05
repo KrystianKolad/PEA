@@ -70,6 +70,10 @@ namespace PEA
                     @continue = Console.ReadLine();
                     working = @continue.Equals("y") || @continue.Equals("Y");
                 }
+                catch (NotImplementedException)
+                {
+                    Console.WriteLine("Ta funkcjonalnosc nie została jeszcze zaimplementowana");
+                }
                 catch (Exception exc)
                 {
                     System.Console.WriteLine(exc.Message);
