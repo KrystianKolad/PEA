@@ -20,7 +20,12 @@ namespace PEA.Algorithms.ATSP
 
         public void Run(string fileName)
         {
-            throw new System.NotImplementedException();
+            var data = _reader.Read(fileName);
+            Matrix matrix = _parser.ParseData(data);
+            System.Console.WriteLine("Rozpoczynam algorytm");
+            // // TODO
+            this.Execute(matrix);
+            System.Console.WriteLine("Algorytm został zakończony");
         }
     }
 }
