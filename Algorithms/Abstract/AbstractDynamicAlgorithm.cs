@@ -6,7 +6,7 @@ namespace PEA.Algorithms.Abstract
     {
         public void Execute(Matrix matrix)
         {
-
+            matrix.Introduce();
         }
     }
 }

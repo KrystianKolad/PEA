@@ -30,7 +30,6 @@ namespace PEA.DataAccess
                 for (int i = 0; i < fileLines.Count; i++)
                 {
                     result[i] = fileLines[i];
-                    System.Console.WriteLine(result[i]);
                 }
             }
             catch (Exception exc)

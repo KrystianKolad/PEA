@@ -1,3 +1,4 @@
+using System;
 using PEA.Model.Interfaces;
 
 namespace PEA.Model
@@ -15,5 +16,9 @@ namespace PEA.Model
             Latitude = latitude;
         }
 
+        internal float? GetDistance(City to)
+        {
+            return (float?)(Math.Pow(this.Latitude-to.Latitude,2)+Math.Pow(this.Longitude-to.Longitude,2));
+        }
     }
 }

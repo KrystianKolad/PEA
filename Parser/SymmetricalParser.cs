@@ -28,7 +28,7 @@ namespace PEA.Parser
                             )
                         );
                 }
-                
+                result = this.CreateMatrix(cities);
             }
             catch (Exception exc)
             {
@@ -36,6 +36,27 @@ namespace PEA.Parser
             }
             Console.WriteLine("Dane sparsowane.");
             return result;
+        }
+
+        private Matrix CreateMatrix(IList<City> cities)
+        {
+            int rows = cities.Count;
+            int columns = cities.Count;
+            Matrix matrix = new Matrix(rows,columns);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    float? data = this.GetDistance(cities[i],cities[j]);
+                    matrix.SetField(i,j,data);
+                }
+            }
+            return matrix;
+        }
+
+        private float? GetDistance(City from,City to)
+        {
+            return from.GetDistance(to);
         }
     }
 }
