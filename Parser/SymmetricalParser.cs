@@ -12,6 +12,7 @@ namespace PEA.Parser
         {
             IList<City> result = new List<City>();
             int numberOfCities = data.Length;
+            Console.WriteLine("Parsuję dane.");
             try
             {
                 for (int i = GlobalConsts.TSPLinesToCutOff; i < numberOfCities; i++)
@@ -31,6 +32,7 @@ namespace PEA.Parser
             {
                 throw exc;
             }
+            Console.WriteLine("Dane sparsowane.");
             return result;
         }
     }

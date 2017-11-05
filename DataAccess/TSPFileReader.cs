@@ -10,13 +10,14 @@ namespace PEA.DataAccess
         public string[] Read(string filePath)
         {
             string[] result = null;
+            Console.WriteLine("Wczytuję dane.");
             try
             {
                 IList<string> fileLines = new List<string>();
                 using (var streamReader = new StreamReader(filePath))
                 {
                     string line = null;
-                    while ((line = streamReader.ReadLine()) != null && line != "EOF")
+                    while ((line = streamReader.ReadLine()) != null && !line.Contains("EOF"))
                     {
                         fileLines.Add(line);
                     }
@@ -32,6 +33,7 @@ namespace PEA.DataAccess
 
                 throw exc;
             }
+            Console.WriteLine("Dane wczytane.");
             return result;
         }
     }

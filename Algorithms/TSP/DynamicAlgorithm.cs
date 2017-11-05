@@ -23,10 +23,9 @@ namespace PEA.Algorithms.TSP
         {
             var data = _reader.Read(fileName);
             var cities = _parser.ParseData(data);
-            foreach (var item in cities)
-            {
-                System.Console.WriteLine(item.Number + " " + item.Latitude + " " + item.Longitude);
-            }
+            System.Console.WriteLine("Rozpoczynam algorytm");
+            // TODO
+            System.Console.WriteLine("Algorytm został zakończony");
         }
     }
 }

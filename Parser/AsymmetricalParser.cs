@@ -15,6 +15,7 @@ namespace PEA.Parser
             Matrix result = null;
             int rows = data.Length - GlobalConsts.ATSPLinesToCutOff;
             int columns = 0;
+            Console.WriteLine("Parsuję dane.");
             try
             {
                 IList<string[]> temporaryRows = new List<string[]>();
@@ -71,6 +72,7 @@ namespace PEA.Parser
             {
                 throw exc;
             }
+            Console.WriteLine("Dane sparsowane.");
             return result;
         }
     }
