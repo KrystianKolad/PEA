@@ -57,7 +57,7 @@ namespace PEA.Parser
         private float? GetDistance(City from,City to)
         {
             float? result = from.GetDistance(to);
-            return result==0 ? 999999999 : result;
+            return result==0 ? GlobalConsts.MaximumMatrixValue : result;
         }
     }
 }
