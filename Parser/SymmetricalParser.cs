@@ -21,7 +21,7 @@ namespace PEA.Parser
                 {
                     string[] line = new string[3];
                     line = data[i].Split();
-                    line = line.Where(x=>x!=null && x!=Environment.NewLine && !x.Equals(String.Empty)).ToArray();
+                    line = line.Where(x=>CanParse(x)).ToArray();
                     cities.Add(
                         new City(
                             Int32.Parse(line[0]),
@@ -60,6 +60,19 @@ namespace PEA.Parser
         {
             float? result = from.GetDistance(to);
             return result==0 ? GlobalConsts.MaximumMatrixValue : result;
+        }
+
+        private bool CanParse(string toParse)
+        {
+            try
+            {
+                float.Parse(toParse);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
         }
     }
 }
