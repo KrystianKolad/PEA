@@ -21,7 +21,7 @@ namespace PEA.Parser
                 {
                     string[] line = new string[3];
                     line = data[i].Split();
-                    line = line.Where(x=>CanParse(x)).ToArray();
+                    line = line.Where(x => CanParse(x)).ToArray();
                     cities.Add(
                         new City(
                             Int32.Parse(line[0]),
@@ -44,22 +44,22 @@ namespace PEA.Parser
         {
             int rows = cities.Count;
             int columns = cities.Count;
-            Matrix matrix = new Matrix(rows,columns);
+            Matrix matrix = new Matrix(rows, columns);
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    float? data = this.GetDistance(cities[i],cities[j]);
-                    matrix.SetField(i,j,data);
+                    float? data = this.GetDistance(cities[i], cities[j]);
+                    matrix.SetField(i, j, data);
                 }
             }
             return matrix;
         }
 
-        private float? GetDistance(City from,City to)
+        private float? GetDistance(City from, City to)
         {
             float? result = from.GetDistance(to);
-            return result==0 ? GlobalConsts.MaximumMatrixValue : result;
+            return result == 0 ? GlobalConsts.MaximumMatrixValue : result;
         }
 
         private bool CanParse(string toParse)

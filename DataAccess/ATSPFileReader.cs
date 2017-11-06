@@ -30,19 +30,13 @@ namespace PEA.DataAccess
                             dimension = splitLine[splitLine.Length - 1];
                         }
                     }
-                    file = streamReader.ReadToEnd().Split().Where(x => x.All(char.IsDigit)).ToList();
+                    file = streamReader.ReadToEnd().Split().ToList();
                 }
+                file = file.Where(x => CanParse(x)).ToArray();
                 fileLines.Add(dimension);
                 for (int i = 0; i < file.Count; i++)
                 {
-                    try
-                    {
-                        int.Parse(file[i]);
-                        fileLines.Add(file[i]);
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    fileLines.Add(file[i]);
                 }
                 result = new string[fileLines.Count];
                 for (int i = 0; i < fileLines.Count; i++)
@@ -57,6 +51,19 @@ namespace PEA.DataAccess
             }
             Console.WriteLine("Dane wczytane.");
             return result;
+        }
+
+        private bool CanParse(string data)
+        {
+            try
+            {
+                int.Parse(data);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
         }
     }
 }
