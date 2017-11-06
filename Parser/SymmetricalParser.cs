@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using PEA.Consts;
 using PEA.Model;
 using PEA.Parser.Interfaces;
@@ -19,7 +20,8 @@ namespace PEA.Parser
                 for (int i = 0; i < numberOfCities; i++)
                 {
                     string[] line = new string[3];
-                    line = data[i].Split(" ");
+                    line = data[i].Split();
+                    line = line.Where(x=>x!=null && x!=Environment.NewLine && !x.Equals(String.Empty)).ToArray();
                     cities.Add(
                         new City(
                             Int32.Parse(line[0]),
