@@ -48,14 +48,7 @@ namespace PEA.Parser
                 for (int j = 0; j < columns; j++)
                 {
                     float? data = this.GetDistance(cities[i],cities[j]);
-                    if (data==0)
-                    {
-                        matrix.SetField(i,j,(float?)999999999);
-                    }
-                    else
-                    {
                     matrix.SetField(i,j,data);
-                    }
                 }
             }
             return matrix;
@@ -63,7 +56,8 @@ namespace PEA.Parser
 
         private float? GetDistance(City from,City to)
         {
-            return from.GetDistance(to);
+            float? result = from.GetDistance(to);
+            return result==0 ? 999999999 : result;
         }
     }
 }
