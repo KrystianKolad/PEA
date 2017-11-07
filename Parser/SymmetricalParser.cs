@@ -49,16 +49,16 @@ namespace PEA.Parser
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    float? data = this.GetDistance(cities[i], cities[j]);
+                    float data = this.GetDistance(cities[i], cities[j]);
                     matrix.SetField(i, j, data);
                 }
             }
             return matrix;
         }
 
-        private float? GetDistance(City from, City to)
+        private float GetDistance(City from, City to)
         {
-            float? result = from.GetDistance(to);
+            float result = from.GetDistance(to);
             return result == 0 ? GlobalConsts.MaximumMatrixValue : result;
         }
 

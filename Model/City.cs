@@ -16,9 +16,9 @@ namespace PEA.Model
             Latitude = latitude;
         }
 
-        internal float? GetDistance(City to)
+        internal float GetDistance(City to)
         {
-            return (float?)Math.Sqrt(Math.Pow(this.Latitude-to.Latitude,2)+Math.Pow(this.Longitude-to.Longitude,2));
+            return (float)Math.Sqrt(Math.Pow(this.Latitude-to.Latitude,2)+Math.Pow(this.Longitude-to.Longitude,2));
         }
     }
 }
