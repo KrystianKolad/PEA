@@ -1,4 +1,5 @@
+path="cd src/PEA/ "
 build="./build.sh"
-run="./src/PEA/run.sh"
+run=$path"run.sh"
 eval $build
 eval $run
