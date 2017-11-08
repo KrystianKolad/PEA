@@ -1,6 +1,4 @@
-restore="dotnet restore"
-build="dotnet build"
-run="dotnet run"
-eval $restore
+build="./build.sh"
+run="./src/PEA/run.sh"
 eval $build
 eval $run

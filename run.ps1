@@ -1,6 +1,5 @@
-$restore = "dotnet restore"
-$build = "dotnet build"
-$run = "dotnet run"
-iex $restore
+$path = "./src/PEA/"
+$build = "./build.ps1"
+$run = $path + "run.ps1"
 iex $build
 iex $run
