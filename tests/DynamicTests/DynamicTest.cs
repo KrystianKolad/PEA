@@ -3,7 +3,7 @@ using Xunit;
 
 namespace DynamicTests
 {
-    public class UnitTest1
+    public class DynamicTest
     {
         [Fact]
         public void Test1()
