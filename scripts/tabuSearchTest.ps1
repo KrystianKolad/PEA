@@ -1,8 +1,8 @@
 $currentLocation = $PSScriptRoot
-$testLocation = "../src/PEA/"
+$testLocation = "../tests/TabuSearchTests/"
 $build = "& ./build.ps1"
-$run = "& ./run.ps1"
+$test = "& ./test.ps1"
 iex $build
 Set-Location $testLocation
-iex $run
+iex $test
 Set-Location $currentLocation
