@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using PEA.Model;
 
 namespace PEA.Algorithms.Abstract
@@ -10,9 +11,11 @@ namespace PEA.Algorithms.Abstract
         private const int StartCity = 0;
         private Matrix _matrix;
         private Dictionary<Tuple<int,IList<int>>,Tuple<int,float>> _memory;
-        public void Execute(Matrix matrix)
+        Stopwatch _watch;
+        public long Execute(Matrix matrix)
         {
             //matrix.Introduce();
+            _watch = new Stopwatch();
             _matrix = matrix;
             _memory = new Dictionary<Tuple<int, IList<int>>, Tuple<int, float>>();
             int startCity = StartCity;
@@ -24,7 +27,7 @@ namespace PEA.Algorithms.Abstract
             {
                 cities.Add(i);
             }
-
+            _watch.Start();
             while (lastVisited != StartCity)
             {
                 lastVisited = Rec(startCity, cities).city;
@@ -33,8 +36,9 @@ namespace PEA.Algorithms.Abstract
                 cities.Remove(startCity);
                 Console.WriteLine("Mam miasto");
             }
-
+            _watch.Stop();
             ShowResult(path.Reverse().ToList());
+            return _watch.ElapsedMilliseconds;
         }
 
         private (int city, float distance) Rec(int currentCity, IList<int> cities)

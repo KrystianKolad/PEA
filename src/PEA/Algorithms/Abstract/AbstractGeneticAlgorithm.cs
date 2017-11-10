@@ -5,7 +5,7 @@ namespace PEA.Algorithms.Abstract
 {
     public abstract class AbstractGeneticAlgorithm
     {
-        public void Execute(Matrix matrix)
+        public long Execute(Matrix matrix)
         {
             throw new NotImplementedException();
         }

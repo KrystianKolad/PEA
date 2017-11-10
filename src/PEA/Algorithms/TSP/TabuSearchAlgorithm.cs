@@ -24,8 +24,9 @@ namespace PEA.Algorithms.TSP
             Matrix matrix = _parser.ParseData(data);
             System.Console.WriteLine("Rozpoczynam algorytm");
             // // TODO
-            this.Execute(matrix);
+            var time = this.Execute(matrix);
             System.Console.WriteLine("Algorytm został zakończony");
+            System.Console.WriteLine("Wykonano w: " + time + " ms.");
         }
     }
 }
