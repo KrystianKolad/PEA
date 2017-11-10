@@ -1,7 +1,7 @@
 $currentLocation = $PSScriptRoot
 $testLocation = "../src/PEA/"
 $build = "& ./build.ps1"
-$run = "& ./run.ps1"
+$run = "& dotnet run"
 iex $build
 Set-Location $testLocation
 iex $run
