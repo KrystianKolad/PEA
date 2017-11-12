@@ -21,7 +21,7 @@ namespace DynamicTests
         IParser<Matrix> _TSPParser;
         IParser<Matrix> _ATSPParser;
         AbstractDynamicAlgorithm _algorithm;
-        Dictionary<string, long> _results;
+        Dictionary<string, double> _results;
         public DynamicTest()
         {
             _TSPFileReader = new TSPFileReader();
@@ -30,10 +30,10 @@ namespace DynamicTests
             _ATSPParser = new AsymmetricalParser();
             _algorithm = new DynamicAlgorithm();
             GetFileNames();
-            _results = new Dictionary<string, long>();
+            _results = new Dictionary<string, double>();
         }
         [Fact]
-        public void CrateData()
+        public void CreateData()
         {
             foreach (var file in TSPFiles)
             {
@@ -74,6 +74,10 @@ namespace DynamicTests
             {
                 int number = i + 1;
                 ATSPFiles.Add(ATSPFileNames[i]);
+            }
+            foreach (var item in TSPFiles)
+            {
+                Console.WriteLine(item);
             }
         }
     }

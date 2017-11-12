@@ -12,7 +12,7 @@ namespace PEA.Algorithms.Abstract
         private Matrix _matrix;
         private Dictionary<Tuple<int,IList<int>>,Tuple<int,float>> _memory;
         Stopwatch _watch;
-        public long Execute(Matrix matrix)
+        public double Execute(Matrix matrix)
         {
             //matrix.Introduce();
             _watch = new Stopwatch();
@@ -22,7 +22,6 @@ namespace PEA.Algorithms.Abstract
             int lastVisited = -1;
             IList<int> cities = new List<int>();
             IList<int> path = new List<int>();
-            path.Add(startCity);
             for (int i = 1; i < matrix.Rows; i++)
             {
                 cities.Add(i);
@@ -38,22 +37,27 @@ namespace PEA.Algorithms.Abstract
             }
             _watch.Stop();
             ShowResult(path.Reverse().ToList());
-            return _watch.ElapsedMilliseconds;
+            return _watch.Elapsed.TotalMilliseconds;
         }
 
         private (int city, float distance) Rec(int currentCity, IList<int> cities)
         {
-            try
+            var key = new Tuple<int, IList<int>>(currentCity,cities);
+            if(_memory.ContainsKey(key))
             {
-                var memoryCheck = _memory[new Tuple<int, IList<int>>(currentCity,cities)];
-                return (memoryCheck.Item1,memoryCheck.Item2);
+                var value = _memory[key];
+                return (value.Item1,value.Item2);     
             }
-            catch (Exception)
+            foreach (int city in cities)
             {
+                if (currentCity == city)
+                {
+                    return (-1,-1);
+                }
             }
-            Dictionary<int, float> problems = new Dictionary<int, float>();
-            if (cities.Count != 0)
+            if (cities.Count > 0)
             {
+                Dictionary<int, float> problems = new Dictionary<int, float>();
                 foreach (var item in cities)
                 {
                     var newCities = new List<int>(cities);
@@ -61,19 +65,8 @@ namespace PEA.Algorithms.Abstract
                     problems.Add(item, _matrix.GetField(item, currentCity) + Rec(item, newCities).distance);
                 }
                 var min = problems.OrderBy(x => x.Value).First();
-                var key = new Tuple<int, IList<int>>(currentCity,cities);
                 var value = new Tuple<int, float>(min.Key,min.Value);
-                if(_memory.ContainsKey(key))
-                {
-                    if(_memory[key].Item2>value.Item2)
-                    {
-                        _memory[key]=value;
-                    }
-                }
-                else
-                {
-                    _memory.Add(key,value);
-                }
+                _memory.Add(key,value);
                 return (min.Key, min.Value);
             }
             else
