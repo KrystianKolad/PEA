@@ -1,7 +1,11 @@
 Plik       Wartosc[ms]
-burma3.tsp      12
-nw7.tsp      73
-ulysses10.tsp      38011
-br7.atsp      75
-ft10.atsp      35815
-ft4.atsp      0
+a6.tsp      13.687
+a2.tsp      0.0396
+a4.tsp      0.0552
+a8.tsp      19.388
+a10.tsp      2041.7172
+a4.atsp      0.0469
+a6.atsp      0.5687
+a8.atsp      17.8908
+a2.atsp      0.0232
+a10.atsp      1955.4354
