@@ -32,7 +32,7 @@ namespace PEA.Algorithms.Abstract
                 lastVisited = Rec(startCity, cities).city;
                 path.Add(lastVisited);
                 startCity = lastVisited;
-                cities.Remove(startCity);
+                cities.Remove(lastVisited);
                 Console.WriteLine("Mam miasto");
             }
             _watch.Stop();
@@ -58,11 +58,11 @@ namespace PEA.Algorithms.Abstract
             if (cities.Count > 0)
             {
                 Dictionary<int, float> problems = new Dictionary<int, float>();
-                foreach (var item in cities)
+                foreach (var city in cities)
                 {
                     var newCities = new List<int>(cities);
-                    newCities.Remove(item);
-                    problems.Add(item, _matrix.GetField(item, currentCity) + Rec(item, newCities).distance);
+                    newCities.Remove(city);
+                    problems.Add(city, _matrix.GetField(city, currentCity) + Rec(city, newCities).distance);
                 }
                 var min = problems.OrderBy(x => x.Value).First();
                 var value = new Tuple<int, float>(min.Key,min.Value);
