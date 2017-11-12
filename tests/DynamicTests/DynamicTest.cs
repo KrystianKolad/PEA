@@ -75,10 +75,6 @@ namespace DynamicTests
                 int number = i + 1;
                 ATSPFiles.Add(ATSPFileNames[i]);
             }
-            foreach (var item in TSPFiles)
-            {
-                Console.WriteLine(item);
-            }
         }
     }
 }
