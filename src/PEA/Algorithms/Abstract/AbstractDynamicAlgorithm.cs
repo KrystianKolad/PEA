@@ -22,6 +22,7 @@ namespace PEA.Algorithms.Abstract
             int lastVisited = -1;
             IList<int> cities = new List<int>();
             IList<int> path = new List<int>();
+            path.Add(StartCity);
             for (int i = 1; i < matrix.Rows; i++)
             {
                 cities.Add(i);
