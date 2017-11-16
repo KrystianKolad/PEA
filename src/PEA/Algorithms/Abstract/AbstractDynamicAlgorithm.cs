@@ -43,7 +43,6 @@ namespace PEA.Algorithms.Abstract
                 startCity = lastVisited;
                 //usuwamy juz odwiedzone miasto z listy miast do odwiedzenia
                 cities.Remove(lastVisited);
-                Console.WriteLine("Mam miasto");
             }
             _watch.Stop();
             ShowResult(path.Reverse().ToList());
@@ -63,7 +62,7 @@ namespace PEA.Algorithms.Abstract
             //sprawdzamy, czy miasto znajduje się na liscie miast do przejscia
             foreach (int city in cities)
             {
-                if (currentCity == city)
+                if (currentCity.Equals(city))
                 {
                     return (-1,-1);
                 }
