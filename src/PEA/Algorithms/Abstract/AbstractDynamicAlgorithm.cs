@@ -45,6 +45,7 @@ namespace PEA.Algorithms.Abstract
                 cities.Remove(lastVisited);
             }
             _watch.Stop();
+            ShowMemory();
             ShowResult(path.Reverse().ToList());
             return _watch.Elapsed.TotalMilliseconds;
         }
@@ -114,6 +115,19 @@ namespace PEA.Algorithms.Abstract
                 }
             }
             Console.WriteLine("Odleglosc: " + distance);
+        }
+
+        private void ShowMemory()
+        {
+            foreach (var pair in _memory)
+            {
+                Console.Write("Miasto: " + pair.Key.Item1 + ", Lista miast: {");
+                foreach (var item in pair.Key.Item2)
+                {
+                    Console.Write(item+" ");
+                }
+                Console.WriteLine("}, Następne miasto: "+pair.Value.Item1+" odległosc: "+pair.Value.Item2);
+            }
         }
     }
 }
