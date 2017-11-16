@@ -76,7 +76,7 @@ namespace PEA.Algorithms.Abstract
                 //Dla kazdego miasta tworzymy podproblemy
                 foreach (var city in cities)
                 {
-
+                    //tworzymy nową listę miast do przejscia dla danego podproblemu
                     var newCities = new List<int>(cities);
                     //usuwamy miasto z listy miast
                     newCities.Remove(city);
