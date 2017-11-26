@@ -33,11 +33,11 @@ namespace PEA.Algorithms.Abstract
 
                 for (int j = 1; j < _currentSolution.Count - 1; j++)
                 {
-                    for (int k = 2; k < _currentSolution.Count - 1; k++)
+                    for (int k = 1; k < _currentSolution.Count - 1; k++)
                     {
                         if(j!=k)
                         {
-                            Swap(j,k);
+                            SwapCurrentSolution(j,k);
                             float currentCost = _matrix.CalculateDistance(_currentSolution);
                             if((currentCost<_bestCost) && _tabuList.GetField(j,k)==0)
                             {
@@ -78,15 +78,14 @@ namespace PEA.Algorithms.Abstract
             _bestCost = _matrix.CalculateDistance(_bestSolution);
         }
 
-        private void Swap(int x, int y)
+        private void SwapCurrentSolution(int x, int y)
         {
             int temp = _currentSolution[x];
-            _currentSolution[x]=_currentSolution[y];
+            _currentSolution[x] = _currentSolution[y];
             _currentSolution[y] = temp;
         }
         private void ShowResult(IList<int> path)
         {
-            float distance = 0;
             Console.WriteLine("Miasta:");
             for (int i = 0; i < path.Count; i++)
             {
@@ -97,10 +96,9 @@ namespace PEA.Algorithms.Abstract
                 else
                 {
                     Console.Write(path[i] + "->");
-                    distance += _matrix.GetField(path[i], path[i + 1]);
                 }
             }
-            Console.WriteLine("Odleglosc: " + distance);
+            Console.WriteLine("Odleglosc: " + _bestCost);
         }
     }
 }
