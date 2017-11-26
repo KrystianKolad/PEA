@@ -30,7 +30,6 @@ namespace PEA.Algorithms.Abstract
             {
                 int from = 0;
                 int to = 0;
-
                 for (int j = 1; j < _currentSolution.Count - 1; j++)
                 {
                     for (int k = 1; k < _currentSolution.Count - 1; k++)
@@ -45,6 +44,10 @@ namespace PEA.Algorithms.Abstract
                                 to = k;
                                 _bestSolution = new List<int>(_currentSolution);
                                 _bestCost = currentCost;
+                            }
+                            else
+                            {
+                                _currentSolution = new List<int>(_bestSolution);
                             }
                         }
                     }
@@ -78,11 +81,11 @@ namespace PEA.Algorithms.Abstract
             _bestCost = _matrix.CalculateDistance(_bestSolution);
         }
 
-        private void SwapCurrentSolution(int x, int y)
+        private void SwapCurrentSolution(int j, int k)
         {
-            int temp = _currentSolution[x];
-            _currentSolution[x] = _currentSolution[y];
-            _currentSolution[y] = temp;
+            int temp = _currentSolution[j];
+            _currentSolution[j] = _currentSolution[k];
+            _currentSolution[k] = temp;
         }
         private void ShowResult(IList<int> path)
         {
