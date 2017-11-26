@@ -14,7 +14,7 @@ namespace PEA.Algorithms.ATSP
 
         public GeneticAlgorithm()
         {
-            _reader = new TSPFileReader();
+            _reader = new ATSPFileReader();
             _parser = new AsymmetricalParser();
         }
 

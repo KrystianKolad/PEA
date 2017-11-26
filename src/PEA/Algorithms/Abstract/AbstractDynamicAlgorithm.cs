@@ -45,7 +45,7 @@ namespace PEA.Algorithms.Abstract
                 cities.Remove(lastVisited);
             }
             _watch.Stop();
-            ShowMemory();
+            //ShowMemory();
             ShowResult(path.Reverse().ToList());
             return _watch.Elapsed.TotalMilliseconds;
         }
