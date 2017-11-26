@@ -19,9 +19,9 @@ namespace PEA.Model
             _data[to,from] +=5;
         }
 
-        public float GetField(int x, int y)
+        public float GetField(int row, int column)
         {
-            return _data[x,y];
+            return _data[row,column];
         }
 
         public void Decrement()

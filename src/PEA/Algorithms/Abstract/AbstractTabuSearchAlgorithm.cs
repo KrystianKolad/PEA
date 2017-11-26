@@ -35,7 +35,8 @@ namespace PEA.Algorithms.Abstract
                 {
                     for (int k = 2; k < _currentSolution.Count - 1; k++)
                     {
-                        if(j!=k){
+                        if(j!=k)
+                        {
                             Swap(j,k);
                             float currentCost = _matrix.CalculateDistance(_currentSolution);
                             if((currentCost<_bestCost) && _tabuList.GetField(j,k)==0)
@@ -46,7 +47,6 @@ namespace PEA.Algorithms.Abstract
                                 _bestCost = currentCost;
                             }
                         }
-                        
                     }
                 }
 
@@ -57,7 +57,7 @@ namespace PEA.Algorithms.Abstract
                 }
             }
             _watch.Stop();
-            ShowResult(_bestSolution.Reverse().ToList());
+            ShowResult(_bestSolution);
 
             return _watch.Elapsed.TotalMilliseconds;
         }

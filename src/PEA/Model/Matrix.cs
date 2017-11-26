@@ -30,7 +30,7 @@ namespace PEA.Model
             float result = 0;
             for (int i = 0; i < solution.Count-1; i++)
             {
-                result +=_data[solution[i],solution[i+1]];
+                result += this.GetField(solution[i],solution[i+1]);
             }
             return result;
         }
