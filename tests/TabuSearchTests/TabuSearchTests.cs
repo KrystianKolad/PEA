@@ -21,7 +21,7 @@ namespace TabuSearchTests
         IParser<Matrix> _TSPParser;
         IParser<Matrix> _ATSPParser;
         AbstractTabuSearchAlgorithm _algorithm;
-        Dictionary<string, long> _results;
+        Dictionary<string, double> _results;
         public TabuSearchTests()
         {
             _TSPFileReader = new TSPFileReader();
@@ -30,7 +30,7 @@ namespace TabuSearchTests
             _ATSPParser = new AsymmetricalParser();
             _algorithm = new TabuSearchAlgorithm();
             GetFileNames();
-            _results = new Dictionary<string, long>();
+            _results = new Dictionary<string, double>();
         }
         [Fact]
         public void CrateData()

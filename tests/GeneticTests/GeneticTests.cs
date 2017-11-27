@@ -20,7 +20,7 @@ namespace GeneticTests
         IParser<Matrix> _TSPParser;
         IParser<Matrix> _ATSPParser;
         AbstractGeneticAlgorithm _algorithm;
-        Dictionary<string, long> _results;
+        Dictionary<string, double> _results;
         public GeneticTests()
         {
             _TSPFileReader = new TSPFileReader();
@@ -29,7 +29,7 @@ namespace GeneticTests
             _ATSPParser = new AsymmetricalParser();
             _algorithm = new GeneticAlgorithm();
             GetFileNames();
-            _results = new Dictionary<string, long>();
+            _results = new Dictionary<string, double>();
         }
         [Fact]
         public void CrateData()
