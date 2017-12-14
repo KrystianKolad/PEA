@@ -45,10 +45,6 @@ namespace PEA.Algorithms.Abstract
                                 _bestSolution = new List<int>(_currentSolution);
                                 _bestCost = currentCost;
                             }
-                            else
-                            {
-                                _currentSolution = new List<int>(_bestSolution);
-                            }
                         }
                     }
                 }
