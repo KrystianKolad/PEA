@@ -16,12 +16,12 @@ namespace PEA.Algorithms.Abstract
         private IList<int> _currentSolution;
         private IList<int> _bestSolution;
         private float _bestCost;
-        public double Execute(Matrix matrix)
+        public double Execute(Matrix matrix, int iterations, int cadency)
         {
             _watch = new Stopwatch();
             _matrix = matrix;
             _problemSize = _matrix.Rows;
-            _numberOfIterations = _problemSize*10;
+            _numberOfIterations = _problemSize*iterations;
             _tabuList = new TabuList(_problemSize);
             SetupCurrentSolution();
             SetupBestSolution();
@@ -56,7 +56,7 @@ namespace PEA.Algorithms.Abstract
                 if(from!=0)
                 {
                     _tabuList.Decrement();
-                    _tabuList.Move(from, to);
+                    _tabuList.Move(from, to, cadency);
                 }
             }
             _watch.Stop();

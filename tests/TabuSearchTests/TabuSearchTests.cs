@@ -35,25 +35,32 @@ namespace TabuSearchTests
         [Fact]
         public void CrateData()
         {
-            foreach (var file in TSPFiles)
+            for(int i = 1;i<4;i++)
             {
-                var time = _algorithm.Execute(_TSPParser.ParseData(_TSPFileReader.Read(file)));
-                _results.Add(file, time);
-            }
-            foreach (var file in ATSPFiles)
-            {
-                var time = _algorithm.Execute(_ATSPParser.ParseData(_ATSPFileReader.Read(file)));
-                _results.Add(file, time);
-            }
-            using (var streamWriter = new StreamWriter("../../../../../artifacts/tabuSearchTest.txt"))
-            {
-                streamWriter.WriteLine(@"Plik       Wartosc[ms]");
-                foreach (var result in _results)
+                for(int j = 1; j<4;j++)
                 {
-                    var key = result.Key.Split(@"/");
-                    var file = key[key.Length-1];
-                    Console.WriteLine(file + ": " + result.Value.ToString());
-                    streamWriter.WriteLine(file +"      " + result.Value.ToString());
+                _results.Clear();
+                foreach (var file in TSPFiles)
+                {
+                    var time = _algorithm.Execute(_TSPParser.ParseData(_TSPFileReader.Read(file)),(int)Math.Pow(10,i),5*j);
+                    _results.Add(file, time);
+                }
+                foreach (var file in ATSPFiles)
+                {
+                    var time = _algorithm.Execute(_ATSPParser.ParseData(_ATSPFileReader.Read(file)),(int)Math.Pow(10,i),5*j);
+                    _results.Add(file, time);
+                }
+                using (var streamWriter = new StreamWriter($"../../../../../artifacts/tabuSearchTest{i}_{j}.txt"))
+                {
+                    streamWriter.WriteLine(@"Plik       Wartosc[ms]");
+                    foreach (var result in _results)
+                    {
+                        var key = result.Key.Split(@"/");
+                        var file = key[key.Length-1];
+                        Console.WriteLine(file + ": " + result.Value.ToString());
+                        streamWriter.WriteLine(file +"      " + result.Value.ToString());
+                    }
+                }
                 }
             }
             Assert.True(true);

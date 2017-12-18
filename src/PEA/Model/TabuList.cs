@@ -13,10 +13,10 @@ namespace PEA.Model
             _data = new float[_citiesNumber,_citiesNumber];
         }
 
-        public void Move(int from, int to)
+        public void Move(int from, int to, int cadency)
         {
-            _data[from,to] +=5;
-            _data[to,from] +=5;
+            _data[from,to] +=cadency;
+            _data[to,from] +=cadency;
         }
 
         public float GetField(int row, int column)
