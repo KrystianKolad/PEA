@@ -60,7 +60,7 @@ namespace PEA.Algorithms.Abstract
                 }
             }
             _watch.Stop();
-            ShowResult(_bestSolution);
+            ShowResult(_bestSolution.Reverse().ToList());
 
             return _watch.Elapsed.TotalMilliseconds;
         }
