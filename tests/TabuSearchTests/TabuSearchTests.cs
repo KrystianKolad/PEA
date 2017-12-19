@@ -58,7 +58,6 @@ namespace TabuSearchTests
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
-                    streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine(@"\begin{tabular}{ |c|c| } ");
                     streamWriter.WriteLine(@" \hline");
                     streamWriter.WriteLine(@"Plik(wraz z ilością miast) & wynik \\ \hline");
@@ -75,10 +74,9 @@ namespace TabuSearchTests
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Asymetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
-                    streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine(@"\begin{tabular}{ |c|c| } ");
                     streamWriter.WriteLine(@" \hline");
-                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & wynik");
+                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & wynik \\ \hline");
                     foreach (var result in _atspResults)
                     {
                         var key = result.Key.Split(@"/");
@@ -88,56 +86,56 @@ namespace TabuSearchTests
                     streamWriter.WriteLine(@"\end{tabular}");
                     streamWriter.WriteLine(@"\end{table}");
                     streamWriter.WriteLine(@"\end{center}");
-                    streamWriter.WriteLine("";)
+                    streamWriter.WriteLine("");
                     streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla symetrycznego problemu przy ilości iteracji ={Math.Pow(10,i)} oraz kadencji = {5*j} }}");
                     streamWriter.WriteLine(@"\begin{tikzpicture}[scale=1.1]
-                                            \begin{axis}[
-                                            xlabel={Liczba miast},
-                                            ylabel={Czas[ms]},
-                                            xmin=0,xmax=26,
-                                            ymin=0,ymax=100,
-                                            legend pos=north west,
-                                            ymajorgrids=true,grid style=dotted
-                                            ]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=26,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
 
-                                            \addplot[color=blue,mark=square]
-                                            coordinates {")
+\addplot[color=blue,mark=square]
+coordinates {");
                     foreach (var result in _tspResults)
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine("("file +"," + result.Value.ToString() + ")");
+                        streamWriter.WriteLine("(" + file +"," + result.Value.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
 
-                                            \end{axis}
-                                            \end{tikzpicture}
-                                            ")
-                    streamWriter.WriteLine("";)
+\end{axis}
+\end{tikzpicture}
+");
+                    streamWriter.WriteLine("");
                     streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla niesymetrycznego problemu przy ilości iteracji ={Math.Pow(10,i)} oraz kadencji = {5*j} }}");
                     streamWriter.WriteLine(@"\begin{tikzpicture}[scale=1.1]
-                                            \begin{axis}[
-                                            xlabel={Plik},
-                                            ylabel={Czas[ms]},
-                                            xmin=0,xmax=26,
-                                            ymin=0,ymax=100,
-                                            legend pos=north west,
-                                            ymajorgrids=true,grid style=dotted
-                                            ]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=26,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
 
-                                            \addplot[color=blue,mark=square]
-                                            coordinates {")
+\addplot[color=blue,mark=square]
+coordinates {");
                     foreach (var result in _atspResults)
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine("("file +"," + result.Value.ToString() + ")");
+                        streamWriter.WriteLine("(" + file +"," + result.Value.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
 
-                                            \end{axis}
-                                            \end{tikzpicture}
-                                            ")
+\end{axis}
+\end{tikzpicture}
+");
 
                     
                 }
