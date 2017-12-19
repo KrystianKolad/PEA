@@ -63,7 +63,7 @@ namespace TabuSearchTests
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
                     streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                     streamWriter.WriteLine(@" \hline");
-                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & czas & wynik \\ \hline");
+                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline");
                     foreach (var result in _tspResults)
                     {
                         var key = result.Key.Split(@"/");
@@ -77,14 +77,14 @@ namespace TabuSearchTests
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Asymetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
-                    streamWriter.WriteLine(@"\begin{tabular}{ |c|c| } ");
+                    streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                     streamWriter.WriteLine(@" \hline");
-                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & wynik \\ \hline");
+                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline");
                     foreach (var result in _atspResults)
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine(file +" & " + result.Value.Item2.ToString() + "& " + result.Value.Item1.ToString() + @"\\ \hline");
+                        streamWriter.WriteLine(file +" & " + result.Value.Item2.ToString() + " & " + result.Value.Item1.ToString() + @"\\ \hline");
                     }
                     streamWriter.WriteLine(@"\end{tabular}");
                     streamWriter.WriteLine(@"\end{table}");
