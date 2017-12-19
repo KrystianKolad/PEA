@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PEA.Algorithms.Abstract;
 using PEA.Algorithms.TSP;
 using PEA.DataAccess;
@@ -55,6 +56,8 @@ namespace TabuSearchTests
                 }
                 using (var streamWriter = new StreamWriter($"../../../../../artifacts/tabuSearchTest{Math.Pow(10,i)}_{5*j}.txt"))
                 {
+                    _tspResults = _tspResults.OrderBy(x=>x.Value);
+                    _atspResults = _atspResults.OrderBy(x=>x.Value);
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
