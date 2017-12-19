@@ -103,7 +103,7 @@ coordinates {");
                     foreach (var result in _tspResults)
                     {
                         var key = result.Key.Split(@"/");
-                        var file = key[key.Length-1];
+                        var file = key[key.Length-1].Replace(".tsp",string.Empty);
                         streamWriter.WriteLine("(" + file +"," + result.Value.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
@@ -128,7 +128,7 @@ coordinates {");
                     foreach (var result in _atspResults)
                     {
                         var key = result.Key.Split(@"/");
-                        var file = key[key.Length-1];
+                        var file = key[key.Length-1].Replace(".atsp",string.Empty);
                         streamWriter.WriteLine("(" + file +"," + result.Value.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
