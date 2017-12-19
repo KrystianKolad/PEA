@@ -56,8 +56,8 @@ namespace TabuSearchTests
                 }
                 using (var streamWriter = new StreamWriter($"../../../../../artifacts/tabuSearchTest{Math.Pow(10,i)}_{5*j}.txt"))
                 {
-                    _tspResults = _tspResults.OrderBy(x=>x.Value);
-                    _atspResults = _atspResults.OrderBy(x=>x.Value);
+                    _tspResults = (from result in _tspResults orderby result.Value ascending select result).ToDictionary(k => k.Key, v => v.Value);
+                    _atspResults = (from result in _atspResults orderby result.Value ascending select result).ToDictionary(k => k.Key, v => v.Value);
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
