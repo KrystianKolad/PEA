@@ -29,7 +29,7 @@ namespace PEA.Algorithms.TSP
             int cadency = Int32.Parse(Console.ReadLine());
             System.Console.WriteLine("Rozpoczynam algorytm");
             // // TODO
-            var time = this.Execute(matrix,iterations, cadency);
+            var time = this.Execute(matrix,iterations, cadency).Item2;
             System.Console.WriteLine("Algorytm został zakończony");
             System.Console.WriteLine("Wykonano w: " + time + " ms.");
         }

@@ -16,7 +16,7 @@ namespace PEA.Algorithms.Abstract
         private IList<int> _currentSolution;
         private IList<int> _bestSolution;
         private float _bestCost;
-        public double Execute(Matrix matrix, int iterations, int cadency)
+        public Tuple<float,double> Execute(Matrix matrix, int iterations, int cadency)
         {
             _watch = new Stopwatch();
             _matrix = matrix;
@@ -62,7 +62,7 @@ namespace PEA.Algorithms.Abstract
             _watch.Stop();
             ShowResult(_bestSolution.Reverse().ToList());
 
-            return _watch.Elapsed.TotalMilliseconds;
+            return new Tuple<float, double>(_bestCost,_watch.Elapsed.TotalMilliseconds);
         }
 
         private void SetupCurrentSolution()

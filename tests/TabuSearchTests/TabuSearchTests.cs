@@ -22,8 +22,8 @@ namespace TabuSearchTests
         IParser<Matrix> _TSPParser;
         IParser<Matrix> _ATSPParser;
         AbstractTabuSearchAlgorithm _algorithm;
-        Dictionary<string, double> _tspResults;
-        Dictionary<string, double> _atspResults;
+        Dictionary<string, Tuple<float,double>> _tspResults;
+        Dictionary<string, Tuple<float,double>> _atspResults;
         public TabuSearchTests()
         {
             _TSPFileReader = new TSPFileReader();
@@ -32,8 +32,8 @@ namespace TabuSearchTests
             _ATSPParser = new AsymmetricalParser();
             _algorithm = new TabuSearchAlgorithm();
             GetFileNames();
-            _tspResults = new Dictionary<string, double>();
-            _atspResults = new Dictionary<string, double>();
+            _tspResults = new Dictionary<string, Tuple<float,double>>();
+            _atspResults = new Dictionary<string, Tuple<float,double>>();
         }
         [Fact]
         public void CrateData()
@@ -56,19 +56,19 @@ namespace TabuSearchTests
                 }
                 using (var streamWriter = new StreamWriter($"../../../../../artifacts/tabuSearchTest{Math.Pow(10,i)}_{5*j}.txt"))
                 {
-                    _tspResults = (from result in _tspResults orderby result.Value ascending select result).ToDictionary(k => k.Key, v => v.Value);
-                    _atspResults = (from result in _atspResults orderby result.Value ascending select result).ToDictionary(k => k.Key, v => v.Value);
+                    _tspResults = (from result in _tspResults orderby result.Value.Item1 ascending select result).ToDictionary(k => k.Key, v => v.Value);
+                    _atspResults = (from result in _atspResults orderby result.Value.Item1 ascending select result).ToDictionary(k => k.Key, v => v.Value);
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
-                    streamWriter.WriteLine(@"\begin{tabular}{ |c|c| } ");
+                    streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                     streamWriter.WriteLine(@" \hline");
-                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & wynik \\ \hline");
+                    streamWriter.WriteLine(@"Plik(wraz z ilością miast) & czas & wynik \\ \hline");
                     foreach (var result in _tspResults)
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine(file +" & " + result.Value.ToString() + @"\\ \hline");
+                        streamWriter.WriteLine(file + " & " + result.Value.Item1.ToString() + " & " + result.Value.Item2.ToString() + @"\\ \hline");
                     }
                     streamWriter.WriteLine(@"\end{tabular}");
                     streamWriter.WriteLine(@"\end{table}");
@@ -84,7 +84,7 @@ namespace TabuSearchTests
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine(file +" & " + result.Value.ToString() + @"\\ \hline");
+                        streamWriter.WriteLine(file +" & " + result.Value.Item1.ToString() + "& " + result.Value.Item2.ToString() + @"\\ \hline");
                     }
                     streamWriter.WriteLine(@"\end{tabular}");
                     streamWriter.WriteLine(@"\end{table}");
@@ -107,7 +107,7 @@ coordinates {");
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1].Replace(".tsp",string.Empty);
-                        streamWriter.WriteLine("(" + file +"," + result.Value.ToString() + ")");
+                        streamWriter.WriteLine("(" + file +"," + result.Value.Item1.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
 
@@ -132,7 +132,7 @@ coordinates {");
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1].Replace(".atsp",string.Empty);
-                        streamWriter.WriteLine("(" + file +"," + result.Value.ToString() + ")");
+                        streamWriter.WriteLine("(" + file +"," + result.Value.Item1.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
 
