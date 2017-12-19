@@ -56,8 +56,8 @@ namespace TabuSearchTests
                 }
                 using (var streamWriter = new StreamWriter($"../../../../../artifacts/tabuSearchTest{Math.Pow(10,i)}_{5*j}.txt"))
                 {
-                    _tspResults = (from result in _tspResults orderby result.Value.Item1 ascending select result).ToDictionary(k => k.Key, v => v.Value);
-                    _atspResults = (from result in _atspResults orderby result.Value.Item1 ascending select result).ToDictionary(k => k.Key, v => v.Value);
+                    _tspResults = (from result in _tspResults orderby result.Value.Item2 ascending select result).ToDictionary(k => k.Key, v => v.Value);
+                    _atspResults = (from result in _atspResults orderby result.Value.Item2 ascending select result).ToDictionary(k => k.Key, v => v.Value);
                     streamWriter.WriteLine(@"\begin{center}");
                     streamWriter.WriteLine(@"\begin{table}");
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
@@ -68,7 +68,7 @@ namespace TabuSearchTests
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine(file + " & " + result.Value.Item1.ToString() + " & " + result.Value.Item2.ToString() + @"\\ \hline");
+                        streamWriter.WriteLine(file + " & " + result.Value.Item2.ToString() + " & " + result.Value.Item1.ToString() + @"\\ \hline");
                     }
                     streamWriter.WriteLine(@"\end{tabular}");
                     streamWriter.WriteLine(@"\end{table}");
@@ -84,7 +84,7 @@ namespace TabuSearchTests
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1];
-                        streamWriter.WriteLine(file +" & " + result.Value.Item1.ToString() + "& " + result.Value.Item2.ToString() + @"\\ \hline");
+                        streamWriter.WriteLine(file +" & " + result.Value.Item2.ToString() + "& " + result.Value.Item1.ToString() + @"\\ \hline");
                     }
                     streamWriter.WriteLine(@"\end{tabular}");
                     streamWriter.WriteLine(@"\end{table}");
@@ -107,7 +107,7 @@ coordinates {");
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1].Replace(".tsp",string.Empty);
-                        streamWriter.WriteLine("(" + file +"," + result.Value.Item1.ToString() + ")");
+                        streamWriter.WriteLine("(" + file +"," + result.Value.Item2.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
 
@@ -132,7 +132,7 @@ coordinates {");
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1].Replace(".atsp",string.Empty);
-                        streamWriter.WriteLine("(" + file +"," + result.Value.Item1.ToString() + ")");
+                        streamWriter.WriteLine("(" + file +"," + result.Value.Item2.ToString() + ")");
                     }
                     streamWriter.WriteLine(@"};
 
