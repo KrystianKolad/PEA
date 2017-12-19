@@ -1,0 +1,109 @@
+\begin{center}
+\begin{table}
+\caption{Symetryczny problem dla 1000 iteracji oraz kadencji = 5}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline
+a2.tsp & 0.04 & 3.319992\\ \hline
+a4.tsp & 5.232 & 14.71265\\ \hline
+a6.tsp & 35.766 & 21.96622\\ \hline
+a8.tsp & 102.739 & 22.35238\\ \hline
+a10.tsp & 245.6 & 28.53243\\ \hline
+a14.tsp & 940.955 & 26351.54\\ \hline
+a20.tsp & 3870.158 & 28148.02\\ \hline
+a24.tsp & 7871.154 & 29931.77\\ \hline
+att48.tsp & 115398.616 & 44828.84\\ \hline
+eil51.tsp & 167762.447 & 602.8494\\ \hline
+berlin52.tsp & 170534.801 & 10900.35\\ \hline
+eil76.tsp & 785927.973 & 850.9036\\ \hline
+eil101.tsp & 2320770.067 & 999.5377\\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}
+\caption{Asymetryczny problem dla 1000 iteracji oraz kadencji = 5}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline
+a2.atsp & 0.062 & 6\\ \hline
+a4.atsp & 6.127 & 104\\ \hline
+a6.atsp & 32.319 & 70\\ \hline
+a8.atsp & 130.569 & 58\\ \hline
+a10.atsp & 289.85 & 39\\ \hline
+a14.atsp & 914.212 & 104\\ \hline
+br17.atsp & 2169.806 & 49\\ \hline
+a20.atsp & 3680.533 & 158\\ \hline
+a24.atsp & 8103.988 & 244\\ \hline
+ftv33.atsp & 29657.48 & 1821\\ \hline
+ft53.atsp & 189571.539 & 9462\\ \hline
+ft70.atsp & 510969.068 & 43462\\ \hline
+kro124p.atsp & 2209815.79 & 64223\\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\subsubsection{Wykres zależności czasu wykonywania od ilości miast dla symetrycznego problemu przy ilości iteracji =1000 oraz kadencji = 5 }
+\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=26,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
+
+\addplot[color=blue,mark=square]
+coordinates {
+(a2,0.04)
+(a4,5.232)
+(a6,35.766)
+(a8,102.739)
+(a10,245.6)
+(a14,940.955)
+(a20,3870.158)
+(a24,7871.154)
+(att48,115398.616)
+(eil51,167762.447)
+(berlin52,170534.801)
+(eil76,785927.973)
+(eil101,2320770.067)
+};
+
+\end{axis}
+\end{tikzpicture}
+
+
+\subsubsection{Wykres zależności czasu wykonywania od ilości miast dla niesymetrycznego problemu przy ilości iteracji =1000 oraz kadencji = 5 }
+\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=26,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
+
+\addplot[color=blue,mark=square]
+coordinates {
+(a2,0.062)
+(a4,6.127)
+(a6,32.319)
+(a8,130.569)
+(a10,289.85)
+(a14,914.212)
+(br17,2169.806)
+(a20,3680.533)
+(a24,8103.988)
+(ftv33,29657.48)
+(ft53,189571.539)
+(ft70,510969.068)
+(kro124p,2209815.79)
+};
+
+\end{axis}
+\end{tikzpicture}
+
