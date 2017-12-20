@@ -4,19 +4,19 @@
 \begin{tabular}{ |c|c|c| } 
  \hline
 Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline
-a2.tsp & 0.001 & 3.319992\\ \hline
-a4.tsp & 0.052 & 14.71265\\ \hline
-a6.tsp & 0.284 & 21.96622\\ \hline
-a8.tsp & 0.9 & 22.35238\\ \hline
-a10.tsp & 3.113 & 28.53243\\ \hline
-a14.tsp & 9.297 & 26351.54\\ \hline
-a20.tsp & 39.663 & 28148.02\\ \hline
-a24.tsp & 78.076 & 29931.77\\ \hline
-att48.tsp & 1281.954 & 44828.84\\ \hline
-eil51.tsp & 1527.46 & 602.8494\\ \hline
-berlin52.tsp & 1646.639 & 10900.35\\ \hline
-eil76.tsp & 7495.337 & 850.9036\\ \hline
-eil101.tsp & 23257.304 & 999.5377\\ \hline
+a2.tsp & 0.002 & 3.319992\\ \hline
+a4.tsp & 0.007 & 14.71265\\ \hline
+a6.tsp & 0.06 & 35.3422\\ \hline
+a8.tsp & 0.242 & 28.17819\\ \hline
+a10.tsp & 0.495 & 36.04456\\ \hline
+a14.tsp & 2.032 & 25796.63\\ \hline
+a20.tsp & 4.025 & 27585.98\\ \hline
+a24.tsp & 7.001 & 35997.13\\ \hline
+att48.tsp & 53.406 & 154365\\ \hline
+eil51.tsp & 63.267 & 870.7188\\ \hline
+berlin52.tsp & 66.834 & 13553.05\\ \hline
+eil76.tsp & 193.221 & 1458.355\\ \hline
+eil101.tsp & 435.861 & 1601.66\\ \hline
 \end{tabular}
 \end{table}
 \end{center}
@@ -28,18 +28,18 @@ eil101.tsp & 23257.304 & 999.5377\\ \hline
  \hline
 Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline
 a2.atsp & 0.001 & 6\\ \hline
-a4.atsp & 0.045 & 104\\ \hline
-a6.atsp & 0.311 & 70\\ \hline
-a8.atsp & 0.908 & 58\\ \hline
-a10.atsp & 2.681 & 39\\ \hline
-a14.atsp & 12.792 & 104\\ \hline
-br17.atsp & 20.506 & 49\\ \hline
-a20.atsp & 39.878 & 158\\ \hline
-a24.atsp & 78.103 & 244\\ \hline
-ftv33.atsp & 323.895 & 1821\\ \hline
-ft53.atsp & 1783.879 & 9462\\ \hline
-ft70.atsp & 5448.454 & 43462\\ \hline
-kro124p.atsp & 22375.524 & 64223\\ \hline
+a4.atsp & 0.013 & 128\\ \hline
+a6.atsp & 0.084 & 187\\ \hline
+a8.atsp & 0.272 & 50\\ \hline
+a10.atsp & 0.744 & 41\\ \hline
+a14.atsp & 1.388 & 94\\ \hline
+br17.atsp & 2.979 & 53\\ \hline
+a20.atsp & 4.759 & 162\\ \hline
+a24.atsp & 6.783 & 286\\ \hline
+ftv33.atsp & 23.099 & 1663\\ \hline
+ft53.atsp & 66.607 & 9946\\ \hline
+ft70.atsp & 145.042 & 48639\\ \hline
+kro124p.atsp & 429.509 & 201468\\ \hline
 \end{tabular}
 \end{table}
 \end{center}
@@ -57,19 +57,19 @@ ymajorgrids=true,grid style=dotted
 
 \addplot[color=blue,mark=square]
 coordinates {
-(a2,0.001)
-(a4,0.052)
-(a6,0.284)
-(a8,0.9)
-(a10,3.113)
-(a14,9.297)
-(a20,39.663)
-(a24,78.076)
-(att48,1281.954)
-(eil51,1527.46)
-(berlin52,1646.639)
-(eil76,7495.337)
-(eil101,23257.304)
+(a2,0.002)
+(a4,0.007)
+(a6,0.06)
+(a8,0.242)
+(a10,0.495)
+(a14,2.032)
+(a20,4.025)
+(a24,7.001)
+(att48,53.406)
+(eil51,63.267)
+(berlin52,66.834)
+(eil76,193.221)
+(eil101,435.861)
 };
 
 \end{axis}
@@ -90,18 +90,18 @@ ymajorgrids=true,grid style=dotted
 \addplot[color=blue,mark=square]
 coordinates {
 (a2,0.001)
-(a4,0.045)
-(a6,0.311)
-(a8,0.908)
-(a10,2.681)
-(a14,12.792)
-(br17,20.506)
-(a20,39.878)
-(a24,78.103)
-(ftv33,323.895)
-(ft53,1783.879)
-(ft70,5448.454)
-(kro124p,22375.524)
+(a4,0.013)
+(a6,0.084)
+(a8,0.272)
+(a10,0.744)
+(a14,1.388)
+(br17,2.979)
+(a20,4.759)
+(a24,6.783)
+(ftv33,23.099)
+(ft53,66.607)
+(ft70,145.042)
+(kro124p,429.509)
 };
 
 \end{axis}
