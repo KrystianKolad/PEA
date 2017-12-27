@@ -1,0 +1,109 @@
+\begin{center}
+\begin{table}[htbp] \raggedright
+\caption{Symetryczny problem dla 100 iteracji, populacji o wielkosci 40,10 krzyzowaniach i 5 mutacjach }
+\begin{tabular}{ |c|c|c| } 
+ \hline
+Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline
+a4.tsp & 4.337 & 14.71265\\ \hline
+a2.tsp & 4.754 & 3.319992\\ \hline
+a6.tsp & 5.999 & 21.96622\\ \hline
+a8.tsp & 6.213 & 24.57575\\ \hline
+a10.tsp & 6.667 & 31.72752\\ \hline
+a20.tsp & 6.889 & 31676.43\\ \hline
+a14.tsp & 6.952 & 22967.16\\ \hline
+a24.tsp & 8.968 & 41639.13\\ \hline
+berlin52.tsp & 9.431 & 22315.35\\ \hline
+att48.tsp & 9.519 & 102267.5\\ \hline
+eil51.tsp & 9.804 & 1307.521\\ \hline
+eil76.tsp & 14.486 & 1851.631\\ \hline
+eil101.tsp & 16.324 & 2687.375\\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[htbp] \raggedright
+\caption{Asymetryczny problem dla 100 iteracji, populacji o wielkosci 40,10 krzyzowaniach i 5 mutacjach }
+\begin{tabular}{ |c|c|c| } 
+ \hline
+Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline
+a6.atsp & 4.3 & 70\\ \hline
+a2.atsp & 4.714 & 6\\ \hline
+a20.atsp & 5.906 & 204\\ \hline
+a8.atsp & 6.128 & 39\\ \hline
+br17.atsp & 6.249 & 62\\ \hline
+a10.atsp & 6.796 & 41\\ \hline
+a14.atsp & 7.147 & 110\\ \hline
+a4.atsp & 7.151 & 104\\ \hline
+ftv33.atsp & 7.165 & 3144\\ \hline
+a24.atsp & 7.391 & 460\\ \hline
+ft53.atsp & 9.585 & 18205\\ \hline
+ft70.atsp & 13.114 & 62649\\ \hline
+kro124p.atsp & 15.417 & 154787\\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\subsubsection{Wykres zależności czasu wykonywania od ilości miast dla symetrycznego problemu przy 100 iteracji, populacji o wielkosci 40,10 krzyzowaniach i 5 mutacjach }
+\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=105,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
+
+\addplot[color=blue,mark=square]
+coordinates {
+(2,4.754)
+(4,4.337)
+(6,5.999)
+(8,6.213)
+(10,6.667)
+(14,6.952)
+(20,6.889)
+(24,8.968)
+(48,9.519)
+(51,9.804)
+(52,9.431)
+(76,14.486)
+(101,16.324)
+};
+
+\end{axis}
+\end{tikzpicture}
+
+
+\subsubsection{Wykres zależności czasu wykonywania od ilości miast dla niesymetrycznego problemu przy 100 iteracji, populacji o wielkosci 40,10 krzyzowaniach i 5 mutacjach }
+\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=130,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
+
+\addplot[color=blue,mark=square]
+coordinates {
+(2,4.714)
+(4,7.151)
+(6,4.3)
+(8,6.128)
+(10,6.796)
+(14,7.147)
+(17,6.249)
+(20,5.906)
+(24,7.391)
+(33,7.165)
+(53,9.585)
+(70,13.114)
+(124,15.417)
+};
+
+\end{axis}
+\end{tikzpicture}
+

@@ -44,29 +44,29 @@ namespace GeneticTests
             {
                 for (int j = 1; j < length; j++)
                 {
-                    for (int k = 1; k < length; k++)
+                    for (int k = 1; k < 2; k++)
                     {
-                        for (int l = 1; l < length; l++)
+                        for (int l = 1; l < 2; l++)
                         {
                             _tspResults.Clear();
                             _atspResults.Clear();
                             foreach (var file in TSPFiles)
                             {
-                                var time = _algorithm.Execute(_TSPParser.ParseData(_TSPFileReader.Read(file)),(int)Math.Pow(10,i),20*j,5*k,5*l);
+                                var time = _algorithm.Execute(_TSPParser.ParseData(_TSPFileReader.Read(file)),(int)Math.Pow(10,i),20*j,10*k,5*l);
                                 _tspResults.Add(file, time);
                             }
                             foreach (var file in ATSPFiles)
                             {
-                                var time = _algorithm.Execute(_ATSPParser.ParseData(_ATSPFileReader.Read(file)),(int)Math.Pow(10,i),20*j,5*k,5*l);
+                                var time = _algorithm.Execute(_ATSPParser.ParseData(_ATSPFileReader.Read(file)),(int)Math.Pow(10,i),20*j,10*k,5*l);
                                 _atspResults.Add(file, time);
                             }
-                            using (var streamWriter = new StreamWriter($"../../../../../artifacts/geneticTest{Math.Pow(10,i)}_{20*j}_{5*k}_{5*l}.txt"))
+                            using (var streamWriter = new StreamWriter($"../../../../../artifacts/geneticTest{Math.Pow(10,i)}_{20*j}_{10*k}_{5*l}.txt"))
                             {
                                 _tspResults = (from result in _tspResults orderby result.Value.Item2 ascending select result).ToDictionary(g => g.Key, v => v.Value);
                                 _atspResults = (from result in _atspResults orderby result.Value.Item2 ascending select result).ToDictionary(g => g.Key, v => v.Value);
                                 streamWriter.WriteLine(@"\begin{center}");
                                 streamWriter.WriteLine(@"\begin{table}[htbp] \raggedright");
-                                streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{10*k} krzyzowaniach i {5*l} mutacjach }}");
                                 streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                                 streamWriter.WriteLine(@" \hline");
                                 streamWriter.WriteLine(@"Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline");
@@ -82,7 +82,7 @@ namespace GeneticTests
                                 streamWriter.WriteLine("");
                                 streamWriter.WriteLine(@"\begin{center}");
                                 streamWriter.WriteLine(@"\begin{table}[htbp] \raggedright");
-                                streamWriter.WriteLine($"\\caption{{Asymetryczny problem dla {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine($"\\caption{{Asymetryczny problem dla {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{10*k} krzyzowaniach i {5*l} mutacjach }}");
                                 streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                                 streamWriter.WriteLine(@" \hline");
                                 streamWriter.WriteLine(@"Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline");
@@ -96,7 +96,7 @@ namespace GeneticTests
                                 streamWriter.WriteLine(@"\end{table}");
                                 streamWriter.WriteLine(@"\end{center}");
                                 streamWriter.WriteLine("");
-                                streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla symetrycznego problemu przy {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla symetrycznego problemu przy {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{10*k} krzyzowaniach i {5*l} mutacjach }}");
                                 streamWriter.WriteLine(@"\begin{tikzpicture}[scale=1.1]
 \begin{axis}[
 xlabel={Plik},
@@ -127,7 +127,7 @@ coordinates {");
 \end{tikzpicture}
 ");
                                 streamWriter.WriteLine("");
-                                streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla niesymetrycznego problemu przy {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla niesymetrycznego problemu przy {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{10*k} krzyzowaniach i {5*l} mutacjach }}");
                                 streamWriter.WriteLine(@"\begin{tikzpicture}[scale=1.1]
 \begin{axis}[
 xlabel={Plik},
