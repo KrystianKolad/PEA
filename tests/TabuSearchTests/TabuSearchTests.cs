@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using PEA.Algorithms.Abstract;
 using PEA.Algorithms.TSP;
 using PEA.DataAccess;
@@ -103,11 +104,17 @@ ymajorgrids=true,grid style=dotted
 
 \addplot[color=blue,mark=square]
 coordinates {");
+                    IList<Tuple<int,double>> items = new List<Tuple<int,double>>();
                     foreach (var result in _tspResults)
                     {
                         var key = result.Key.Split(@"/");
-                        var file = key[key.Length-1].Replace(".tsp",string.Empty);
-                        streamWriter.WriteLine("(" + file +"," + result.Value.Item2.ToString() + ")");
+                        var file = key[key.Length-1].Replace(".atsp",string.Empty);
+                        items.Add(new Tuple<int,double>(Int32.Parse(Regex.Match(file, @"\d+").Value ),result.Value.Item2));
+                    }
+                    items = items.OrderBy(x=>x.Item1).ToList();
+                    foreach(var item in items)
+                    {
+                        streamWriter.WriteLine("(" + item.Item1 +"," + item.Item2 + ")");
                     }
                     streamWriter.WriteLine(@"};
 
@@ -128,11 +135,17 @@ ymajorgrids=true,grid style=dotted
 
 \addplot[color=blue,mark=square]
 coordinates {");
+                    items = new List<Tuple<int,double>>();
                     foreach (var result in _atspResults)
                     {
                         var key = result.Key.Split(@"/");
                         var file = key[key.Length-1].Replace(".atsp",string.Empty);
-                        streamWriter.WriteLine("(" + file +"," + result.Value.Item2.ToString() + ")");
+                        items.Add(new Tuple<int,double>(Int32.Parse(Regex.Match(file, @"\d+").Value ),result.Value.Item2));
+                    }
+                    items = items.OrderBy(x=>x.Item1).ToList();
+                    foreach(var item in items)
+                    {
+                        streamWriter.WriteLine("(" + item.Item1 +"," + item.Item2 + ")");
                     }
                     streamWriter.WriteLine(@"};
 
