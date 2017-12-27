@@ -59,7 +59,7 @@ namespace TabuSearchTests
                     _tspResults = (from result in _tspResults orderby result.Value.Item2 ascending select result).ToDictionary(k => k.Key, v => v.Value);
                     _atspResults = (from result in _atspResults orderby result.Value.Item2 ascending select result).ToDictionary(k => k.Key, v => v.Value);
                     streamWriter.WriteLine(@"\begin{center}");
-                    streamWriter.WriteLine(@"\begin{table}");
+                    streamWriter.WriteLine(@"\begin{table}[htbp] \raggedright");
                     streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
                     streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                     streamWriter.WriteLine(@" \hline");
@@ -75,7 +75,7 @@ namespace TabuSearchTests
                     streamWriter.WriteLine(@"\end{center}");
                     streamWriter.WriteLine("");
                     streamWriter.WriteLine(@"\begin{center}");
-                    streamWriter.WriteLine(@"\begin{table}");
+                    streamWriter.WriteLine(@"\begin{table}[htbp] \raggedright");
                     streamWriter.WriteLine($"\\caption{{Asymetryczny problem dla {Math.Pow(10,i)} iteracji oraz kadencji = {5*j}}}");
                     streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
                     streamWriter.WriteLine(@" \hline");

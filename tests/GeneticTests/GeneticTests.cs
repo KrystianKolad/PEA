@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PEA.Algorithms.Abstract;
 using PEA.Algorithms.TSP;
 using PEA.DataAccess;
@@ -20,7 +21,8 @@ namespace GeneticTests
         IParser<Matrix> _TSPParser;
         IParser<Matrix> _ATSPParser;
         AbstractGeneticAlgorithm _algorithm;
-        Dictionary<string, double> _results;
+        Dictionary<string, Tuple<float,double>> _tspResults;
+        Dictionary<string, Tuple<float,double>> _atspResults;
         public GeneticTests()
         {
             _TSPFileReader = new TSPFileReader();
@@ -29,30 +31,121 @@ namespace GeneticTests
             _ATSPParser = new AsymmetricalParser();
             _algorithm = new GeneticAlgorithm();
             GetFileNames();
-            _results = new Dictionary<string, double>();
+            _tspResults = new Dictionary<string, Tuple<float,double>>();
+            _atspResults = new Dictionary<string, Tuple<float,double>>();
         }
         [Fact]
         public void CrateData()
         {
-            foreach (var file in TSPFiles)
+            int length = 4;
+            for (int i = 1; i < length; i++)
             {
-                var time = _algorithm.Execute(_TSPParser.ParseData(_TSPFileReader.Read(file)));
-                _results.Add(file, time);
-            }
-            foreach (var file in ATSPFiles)
-            {
-                var time = _algorithm.Execute(_ATSPParser.ParseData(_ATSPFileReader.Read(file)));
-                _results.Add(file, time);
-            }
-            using (var streamWriter = new StreamWriter("../../../../../artifacts/geneticTest.txt"))
-            {
-                streamWriter.WriteLine(@"Plik       Wartosc[ms]");
-                foreach (var result in _results)
+                for (int j = 1; j < length; j++)
                 {
-                    var key = result.Key.Split(@"/");
-                    var file = key[key.Length-1];
-                    Console.WriteLine(file + ": " + result.Value.ToString());
-                    streamWriter.WriteLine(file +"      " + result.Value.ToString());
+                    for (int k = 1; k < length; k++)
+                    {
+                        for (int l = 1; l < length; l++)
+                        {
+                            _tspResults.Clear();
+                            _atspResults.Clear();
+                            foreach (var file in TSPFiles)
+                            {
+                                var time = _algorithm.Execute(_TSPParser.ParseData(_TSPFileReader.Read(file)),(int)Math.Pow(10,i),20*j,5*k,5*l);
+                                _tspResults.Add(file, time);
+                            }
+                            foreach (var file in ATSPFiles)
+                            {
+                                var time = _algorithm.Execute(_ATSPParser.ParseData(_ATSPFileReader.Read(file)),(int)Math.Pow(10,i),20*j,5*k,5*l);
+                                _atspResults.Add(file, time);
+                            }
+                            using (var streamWriter = new StreamWriter($"../../../../../artifacts/geneticTest{Math.Pow(10,i)}_{20*j}_{5*k}_{5*l}.txt"))
+                            {
+                                _tspResults = (from result in _tspResults orderby result.Value.Item2 ascending select result).ToDictionary(g => g.Key, v => v.Value);
+                                _atspResults = (from result in _atspResults orderby result.Value.Item2 ascending select result).ToDictionary(g => g.Key, v => v.Value);
+                                streamWriter.WriteLine(@"\begin{center}");
+                                streamWriter.WriteLine(@"\begin{table}[htbp] \raggedright");
+                                streamWriter.WriteLine($"\\caption{{Symetryczny problem dla {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
+                                streamWriter.WriteLine(@" \hline");
+                                streamWriter.WriteLine(@"Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline");
+                                foreach (var result in _tspResults)
+                                {
+                                    var key = result.Key.Split(@"/");
+                                    var file = key[key.Length-1];
+                                    streamWriter.WriteLine(file + " & " + result.Value.Item2.ToString() + " & " + result.Value.Item1.ToString() + @"\\ \hline");
+                                }
+                                streamWriter.WriteLine(@"\end{tabular}");
+                                streamWriter.WriteLine(@"\end{table}");
+                                streamWriter.WriteLine(@"\end{center}");
+                                streamWriter.WriteLine("");
+                                streamWriter.WriteLine(@"\begin{center}");
+                                streamWriter.WriteLine(@"\begin{table}[htbp] \raggedright");
+                                streamWriter.WriteLine($"\\caption{{Asymetryczny problem dla {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine(@"\begin{tabular}{ |c|c|c| } ");
+                                streamWriter.WriteLine(@" \hline");
+                                streamWriter.WriteLine(@"Plik(wraz z ilością miast) & Czas[ms] & Wynik \\ \hline");
+                                foreach (var result in _atspResults)
+                                {
+                                    var key = result.Key.Split(@"/");
+                                    var file = key[key.Length-1];
+                                    streamWriter.WriteLine(file +" & " + result.Value.Item2.ToString() + " & " + result.Value.Item1.ToString() + @"\\ \hline");
+                                }
+                                streamWriter.WriteLine(@"\end{tabular}");
+                                streamWriter.WriteLine(@"\end{table}");
+                                streamWriter.WriteLine(@"\end{center}");
+                                streamWriter.WriteLine("");
+                                streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla symetrycznego problemu przy {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine(@"\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=26,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
+
+\addplot[color=blue,mark=square]
+coordinates {");
+                                foreach (var result in _tspResults)
+                                {
+                                    var key = result.Key.Split(@"/");
+                                    var file = key[key.Length-1].Replace(".tsp",string.Empty);
+                                    streamWriter.WriteLine("(" + file +"," + result.Value.Item2.ToString() + ")");
+                                }
+                                streamWriter.WriteLine(@"};
+
+\end{axis}
+\end{tikzpicture}
+");
+                                streamWriter.WriteLine("");
+                                streamWriter.WriteLine($"\\subsubsection{{Wykres zależności czasu wykonywania od ilości miast dla niesymetrycznego problemu przy {Math.Pow(10,i)} iteracji, populacji o wielkosci {20*j},{5*k} krzyowaniach i {5*l} mutacjach }}");
+                                streamWriter.WriteLine(@"\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+xlabel={Plik},
+ylabel={Czas[ms]},
+xmin=0,xmax=26,
+ymin=0,ymax=100,
+legend pos=north west,
+ymajorgrids=true,grid style=dotted
+]
+
+\addplot[color=blue,mark=square]
+coordinates {");
+                                foreach (var result in _atspResults)
+                                {
+                                    var key = result.Key.Split(@"/");
+                                    var file = key[key.Length-1].Replace(".atsp",string.Empty);
+                                    streamWriter.WriteLine("(" + file +"," + result.Value.Item2.ToString() + ")");
+                                }
+                                streamWriter.WriteLine(@"};
+
+\end{axis}
+\end{tikzpicture}
+");
+                            }
+                        }
+                    } 
                 }
             }
             Assert.True(true);
