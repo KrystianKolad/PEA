@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using PEA.Consts;
 using PEA.Model;
@@ -24,7 +25,7 @@ namespace PEA.Parser
                 {
                     for (int j = 0; j < columns; j++)
                     {
-                        result.SetField(i,j,float.Parse(data[currentPlace]));
+                        result.SetField(i,j,float.Parse(data[currentPlace], CultureInfo.InvariantCulture));
                         currentPlace++;
                     }
                 }
