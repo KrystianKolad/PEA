@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using PEA.Consts;
 using PEA.Model;
@@ -25,8 +26,8 @@ namespace PEA.Parser
                     cities.Add(
                         new City(
                             Int32.Parse(line[0]),
-                            float.Parse(line[1]),
-                            float.Parse(line[2])
+                            float.Parse(line[1], CultureInfo.InvariantCulture),
+                            float.Parse(line[2], CultureInfo.InvariantCulture)
                             )
                         );
                 }
@@ -66,7 +67,7 @@ namespace PEA.Parser
         {
             try
             {
-                float.Parse(toParse);
+                float.Parse(toParse, CultureInfo.InvariantCulture);
                 return true;
             }
             catch (Exception)
