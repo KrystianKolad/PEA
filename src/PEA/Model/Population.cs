@@ -74,6 +74,8 @@ namespace PEA.Model
                 var temp = _members[member].Item1[firstCity];
                 _members[member].Item1[firstCity] = _members[member].Item1[secondCity];
                 _members[member].Item1[secondCity] = temp;
+                Tuple<IList<int>,float> newMember = new Tuple<IList<int>,float>(_members[member].Item1,_matrix.CalculateDistance(_members[member].Item1.Reverse().ToList()));
+                _members[member]=newMember;
             }
         }
 
