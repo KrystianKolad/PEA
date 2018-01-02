@@ -32,7 +32,7 @@ namespace PEA.Algorithms.TSP
             int crossCount = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Podaj ilośc mutacji");
             int mutationCount = Int32.Parse(Console.ReadLine());
-            var time = this.Execute(matrix,iterations,membersCount,crossCount,mutationCount);
+            var time = this.Execute(matrix,iterations,membersCount,crossCount,mutationCount).Item2;
             System.Console.WriteLine("Algorytm został zakończony");
             System.Console.WriteLine("Wykonano w: " + time + " ms.");
         }
