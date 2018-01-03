@@ -7,6 +7,8 @@ namespace PEA.Model
     public class Population
     {
         private IList<Tuple<IList<int>,float>> _members;
+
+        private IList<Tuple<IList<int>,float>> _nextGeneration;
         private Matrix _matrix;
 
         private int _membersCount;
@@ -43,6 +45,7 @@ namespace PEA.Model
 
         public void Cross()
         {
+            _nextGeneration = new List<Tuple<IList<int>,float>>();
             for (int i = 0; i < _crossCount; i++)
             {
                 _random = new Random();
@@ -59,7 +62,7 @@ namespace PEA.Model
                 }
                 cities.Add(0);
                 var distance = _matrix.CalculateDistance(cities.Reverse().ToList());
-                _members.Add(new Tuple<IList<int>, float>(cities,distance));
+                _nextGeneration.Add(new Tuple<IList<int>, float>(cities,distance));
             }
         }
 
@@ -83,18 +86,26 @@ namespace PEA.Model
         {
             this.Cross();
             this.Mutate();
-            this.Sort();
             this.Cut();
-        }
-
-        public void Sort()
-        {
-            _members = _members.OrderBy(x=>x.Item2).ToList();;
         }
 
         public void Cut()
         {
-            _members =_members.Take(_membersCount).ToList();
+            var oldGeneration = new List<Tuple<IList<int>,float>>(_members);
+            oldGeneration = _members.OrderBy(x=>x.Item2).Skip(5).ToList();
+            _members =_members.OrderBy(x=>x.Item2).Take(5).ToList();
+            int i =0;
+            while(_members.Count<_membersCount && i<_nextGeneration.Count)
+            {
+                _members.Add(_nextGeneration[i]);
+                i++;
+            }
+            i=0;
+            while(_members.Count<_membersCount)
+            {
+                _members.Add(oldGeneration[i]);
+                i++;
+            }
         }
 
         public void Introduce(){
