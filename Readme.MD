@@ -5,9 +5,7 @@ Projektowanie Efektywnych Algorytmów
 ```
 $ .scripts/run.sh
 ```
-Aby odpalic projekt w bashu lub
+or
 ```
 $ .scripts/run.ps1
 ```
-Aby wygenerowac wyniki zostaly stworzone testy jednostkowe.
-Odpalamy odpowiednie komendy z folderu scripts
