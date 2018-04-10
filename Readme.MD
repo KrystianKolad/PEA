@@ -1,4 +1,4 @@
-Projektowanie Efektywnych Algorytmów
+Effective Algorithms Programming
 =============================
 
 ### Run 
